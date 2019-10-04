@@ -60,3 +60,17 @@ install(TARGETS pbrtParser_static DESTINATION lib)
 install(FILES include/pbrtParser/math.h DESTINATION include/pbrtParser)
 install(FILES include/pbrtParser/Scene.h DESTINATION include/pbrtParser)
 
+if(APPLE)
+	elseif(UNIX)
+	elseif(WIN32)
+		#copying built lib to the output
+		add_custom_command(
+		TARGET pbrtParser_static 
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy
+		  $<TARGET_FILE:pbrtParser_static>
+		  ${CMAKE_SOURCE_DIR}/../builtDependencies/windows/$<CONFIGURATION>/pbrtParser_static.lib)		
+endif()
+
+file(COPY "include/" DESTINATION "${CMAKE_SOURCE_DIR}/../builtDependencies/includes/")
+
