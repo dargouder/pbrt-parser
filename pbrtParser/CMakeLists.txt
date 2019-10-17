@@ -61,7 +61,12 @@ install(FILES include/pbrtParser/math.h DESTINATION include/pbrtParser)
 install(FILES include/pbrtParser/Scene.h DESTINATION include/pbrtParser)
 
 if(APPLE)
-	elseif(UNIX)
+		add_custom_command(
+		TARGET pbrtParser_static 
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy
+		  $<TARGET_FILE:libpbrtParser_static>
+		  ${CMAKE_SOURCE_DIR}/../builtDependencies/apple/$<CONFIGURATION>/libpbrtParser_static.a)	elseif(UNIX)
 	elseif(WIN32)
 		#copying built lib to the output
 		add_custom_command(
