@@ -65,7 +65,7 @@ if(APPLE)
 		TARGET pbrtParser_static 
 		POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy
-		  $<TARGET_FILE:libpbrtParser_static>
+		  $<TARGET_FILE:pbrtParser_static>
 		  ${CMAKE_SOURCE_DIR}/../builtDependencies/apple/$<CONFIGURATION>/libpbrtParser_static.a)
 elseif(WIN32)
 		#copying built lib to the output
